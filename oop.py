@@ -177,14 +177,36 @@
 
 ## accessing private variable outside the class indirectly using methods
 
-class myclass:
-    __empid = 101
+# class myclass:
+#     __empid = 101
     
-    def getempid(self,eid):
-        self.__empid = eid
+#     def getempid(self,eid):
+#         self.__empid = eid
         
-    def disp(self):
-        print(self.__empid)
+#     def disp(self):
+#         print(self.__empid)
         
-obj = myclass()
-obj.disp()
+# obj = myclass()
+# obj.disp()
+
+## abstract class
+
+# #python has in-build abstract class module called abc
+
+# #importing abc module
+# from abc import ABC, abstractmethod
+
+
+# class A(ABC):                   #extending abc class
+#     @abstractmethod 
+#     def display(self):
+#         None
+# class B(A):
+#     def display(self):
+#         print("this is abstract method")
+        
+# obj = B()
+# obj.display()
+
+
+
