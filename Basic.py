@@ -148,5 +148,3 @@ print(student)
 
 student.update(new_student)
 print(student)
-
-
