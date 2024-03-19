@@ -19,7 +19,7 @@ class TestLogin:
         login_page.enter_email(data["user_email"])
         login_page.enter_pass(data["user_pwd"])
         login_page.click_login()
-        time.sleep(5)
+        login_page.verify_login_page()
         assert "activities" in self.driver.current_url.lower(), "Login failed. Dashboard not reached."
         print("Logged in successfully!")
 
@@ -95,4 +95,5 @@ class TestLogin:
         error_message_element = login_page.error_message(login_page.email_send)
         assert error_message_element.is_displayed()
         print("Email successfully send")
+
 

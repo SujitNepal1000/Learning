@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions
 from src.Helper.BaseWrapper import BaseWrapper
+from src.PageObjects.DashboardPage import DashboardPage
+from selenium.common import NoSuchElementException
 
 
 class LoginPage(BaseWrapper):
@@ -16,6 +18,7 @@ class LoginPage(BaseWrapper):
     reset_error = (By.XPATH, "//div/span[@class='error']")
     send_mail = (By.XPATH, "//button[@type='submit']")
     email_send = (By.XPATH, "//h2[text()='Password Recovery']")
+    heading = (By.XPATH, "//h4[text()=' Your Activities ']")
 
     def enter_email(self, email):
         self.enter_username(self.locator_email, email)
@@ -25,6 +28,7 @@ class LoginPage(BaseWrapper):
 
     def click_login(self):
         self.click_element(self.locator_login_btn)
+        return DashboardPage(self.driver)
 
     def error_message(self, locator):
         return self.driver.find_element(*locator)
@@ -37,5 +41,15 @@ class LoginPage(BaseWrapper):
 
     def click_send_btn(self):
         self.click_element(self.send_mail)
+
+    def verify_login_page(self):
+        try:
+            login_heading = self.wait.until(expected_conditions.visibility_of_element_located(self.heading))
+            assert login_heading.is_displayed()
+        except NoSuchElementException:
+            print("No valid element found on the page.")
+
+
+
 
 
